@@ -24,7 +24,7 @@ namespace BlazorTDDTest.Tests
             var cut = ctx.RenderComponent<Calculator>();
             var paraElm = cut.Find("p");
 
-            //Act
+            // Act
             cut.Find("button#one").Click();
 
             // Assert
@@ -40,7 +40,7 @@ namespace BlazorTDDTest.Tests
             var cut = ctx.RenderComponent<Calculator>();
             var paraElm = cut.Find("p");
 
-            //Act
+            // Act
             cut.Find("button#one").Click();
             cut.Find("button#one").Click();
 
