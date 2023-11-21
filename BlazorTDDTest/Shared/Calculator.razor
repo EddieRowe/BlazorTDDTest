@@ -1,0 +1,40 @@
+﻿<h3>Calculator</h3>
+
+<div id="calc-display">
+    <p @bind="currentDisplayValue" id="calc-display-value">0</p>
+</div>
+
+
+<div id="buttons">
+    <table>
+        <tr>
+            <td><button class="btn btn-primary">1</button></td>
+            <td><button class="btn btn-primary">2</button></td>
+            <td><button class="btn btn-primary">3</button></td>
+        </tr>
+        <tr>
+            <td><button class="btn btn-primary">4</button></td>
+            <td><button class="btn btn-primary">5</button></td>
+            <td><button class="btn btn-primary">6</button></td>
+        </tr>
+        <tr>
+            <td><button class="btn btn-primary">7</button></td>
+            <td><button class="btn btn-primary">8</button></td>
+            <td><button class="btn btn-primary">9</button></td>
+        </tr>
+        <tr>
+            <td><button class="btn btn-primary">0</button></td>
+        </tr>
+
+    </table>
+</div>
+
+
+@code {
+    string? currentDisplayValue = "1";
+
+    private void PressNumberButton(char number)
+    {
+        
+    }
+}

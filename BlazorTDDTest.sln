@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorTDDTest", "BlazorTDDTest\BlazorTDDTest.csproj", "{52347991-E4B4-4F2F-A6E1-06FD08F4AF34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorTDDTest", "BlazorTDDTest\BlazorTDDTest.csproj", "{52347991-E4B4-4F2F-A6E1-06FD08F4AF34}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorTDDTest.Tests", "BlazorTDDTest.Tests\BlazorTDDTest.Tests.csproj", "{A4F2B5FD-E738-4FA2-8C4A-CB0EBAE65C06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorTDDTest.Tests", "BlazorTDDTest.Tests\BlazorTDDTest.Tests.csproj", "{A4F2B5FD-E738-4FA2-8C4A-CB0EBAE65C06}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
