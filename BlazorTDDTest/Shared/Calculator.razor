@@ -9,22 +9,29 @@
     <table>
         <tr>
             <td><button class="btn btn-primary" id="one" @onclick="() => PressNumberButton(1)">1</button></td>
-            <td><button class="btn btn-primary" @onclick="() => PressNumberButton(2)">2</button></td>
-            <td><button class="btn btn-primary" @onclick="() => PressNumberButton(3)">3</button></td>
+            <td><button class="btn btn-primary" id="two" @onclick="() => PressNumberButton(2)">2</button></td>
+            <td><button class="btn btn-primary" id="three" @onclick="() => PressNumberButton(3)">3</button></td>
         </tr>
         <tr>
-            <td><button class="btn btn-primary" @onclick="() => PressNumberButton(4)">4</button></td>
-            <td><button class="btn btn-primary" @onclick="() => PressNumberButton(5)">5</button></td>
-            <td><button class="btn btn-primary" @onclick="() => PressNumberButton(6)">6</button></td>
+            <td><button class="btn btn-primary" id="four" @onclick="() => PressNumberButton(4)">4</button></td>
+            <td><button class="btn btn-primary" id="five" @onclick="() => PressNumberButton(5)">5</button></td>
+            <td><button class="btn btn-primary" id="six" @onclick="() => PressNumberButton(6)">6</button></td>
         </tr>
         <tr>
-            <td><button class="btn btn-primary" @onclick="() => PressNumberButton(7)">7</button></td>
-            <td><button class="btn btn-primary" @onclick="() => PressNumberButton(8)">8</button></td>
-            <td><button class="btn btn-primary" @onclick="() => PressNumberButton(9)">9</button></td>
+            <td><button class="btn btn-primary" id="seven" @onclick="() => PressNumberButton(7)">7</button></td>
+            <td><button class="btn btn-primary" id="eight" @onclick="() => PressNumberButton(8)">8</button></td>
+            <td><button class="btn btn-primary" id="nine" @onclick="() => PressNumberButton(9)">9</button></td>
         </tr>
         <tr>
-            <td><button class="btn btn-primary" @onclick="() => PressNumberButton(0)">0</button></td>
+            <td><button class="btn btn-primary" id="zero" @onclick="() => PressNumberButton(0)">0</button></td>
             <td><button class="btn btn-primary" id="clear-display" @onclick=" ()=> ClearDisplay()">C</button></td>
+            <td><button class="btn btn-primary" id="press-equals" @onclick=" ()=> PressEquals()">=</button></td>
+        </tr>
+        <tr>
+            <td><button class="btn btn-primary" id="press-add" @onclick=" ()=> PressAdd()">+</button></td>
+            <td><button class="btn btn-primary" id="press-subtract" @onclick=" ()=> PressSubtract()">-</button></td>
+            <td><button class="btn btn-primary" id="press-multiply" @onclick=" ()=> PressMultiply()">*</button></td>
+            <td><button class="btn btn-primary" id="press-divide" @onclick=" ()=> PressDivide()">/</button></td>
         </tr>
 
     </table>
@@ -32,11 +39,14 @@
 
 
 @code {
-    string? currentDisplayValue = "0";
+    string currentDisplayValue = "0";
+    int numberOne = 0;
+    int numberTwo = 0;
+    string operation = "";
 
     private void PressNumberButton(int number)
     {
-        if(currentDisplayValue == "0")
+        if (currentDisplayValue == "0" || !IsDisplayingNumber() || operation == "equals")
         {
             currentDisplayValue = number.ToString();
         }
@@ -44,10 +54,96 @@
         {
             currentDisplayValue += number.ToString();
         }
+        if (operation == "equals")
+            operation = "";
+    }
+
+    private void PressAdd()
+    {
+        if (!IsDisplayingNumber()) { return; }
+        numberOne = int.Parse(currentDisplayValue);
+        operation = "add";
+        currentDisplayValue = "+";
+    }
+
+    private void PressSubtract()
+    {
+        if (!IsDisplayingNumber()){ return; }
+        numberOne = int.Parse(currentDisplayValue);
+        operation = "subtract";
+        currentDisplayValue = "-";
+    }
+
+    private void PressMultiply()
+    {
+        if (!IsDisplayingNumber()) { return; }
+        numberOne = int.Parse(currentDisplayValue);
+        operation = "multiply";
+        currentDisplayValue = "*";
+    }
+
+    private void PressDivide()
+    {
+        if (!IsDisplayingNumber()) { return; }
+        numberOne = int.Parse(currentDisplayValue);
+        operation = "divide";
+        currentDisplayValue = "/";
+    }
+
+    private void PressEquals()
+    {
+        numberTwo = int.Parse(currentDisplayValue);
+        switch (operation)
+        {
+            case "add":
+                currentDisplayValue = Add(numberOne, numberTwo).ToString();
+                break;
+            case "subtract":
+                currentDisplayValue = Subtract(numberOne, numberTwo).ToString();
+                break;
+            case "multiply":
+                currentDisplayValue = Multiply(numberOne, numberTwo).ToString();
+                break;
+            case "divide":
+                currentDisplayValue = Divide(numberOne, numberTwo);
+                break;
+            default:
+                break;
+        }
+        numberOne = 0;
+        numberTwo = 0;
+        operation = "equals";
+    }
+
+    private int Add(int num1, int num2)
+    {
+        return num1 + num2;
+    }
+
+    private int Subtract(int num1, int num2)
+    {
+        return num1 - num2;
+    }
+
+    private int Multiply(int num1, int num2)
+    {
+        return num1 * num2;
+    }
+
+    private string Divide(int num1, int num2)
+    {
+        if (num2 == 0)
+            return "Cannot / by 0";
+        return (num1 / num2).ToString();
     }
 
     private void ClearDisplay()
     {
         currentDisplayValue = "0";
+    }
+
+    private bool IsDisplayingNumber()
+    {
+        return int.TryParse(currentDisplayValue, out _);
     }
 }
