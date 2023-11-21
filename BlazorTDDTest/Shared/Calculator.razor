@@ -42,11 +42,22 @@
     string currentDisplayValue = "0";
     int numberOne = 0;
     int numberTwo = 0;
-    string operation = "";
+
+    enum Operation
+    {
+        Add,
+        Subtract,
+        Multiply,
+        Divide,
+        Result,
+        None
+    }
+
+    Operation operation = Operation.None;
 
     private void PressNumberButton(int number)
     {
-        if (currentDisplayValue == "0" || !IsDisplayingNumber() || operation == "equals")
+        if (currentDisplayValue == "0" || !IsDisplayingNumber() || operation == Operation.Result)
         {
             currentDisplayValue = number.ToString();
         }
@@ -54,15 +65,15 @@
         {
             currentDisplayValue += number.ToString();
         }
-        if (operation == "equals")
-            operation = "";
+        if (operation == Operation.Result)
+            operation = Operation.None;
     }
 
     private void PressAdd()
     {
         if (!IsDisplayingNumber()) { return; }
         numberOne = int.Parse(currentDisplayValue);
-        operation = "add";
+        operation = Operation.Add;
         currentDisplayValue = "+";
     }
 
@@ -70,7 +81,7 @@
     {
         if (!IsDisplayingNumber()){ return; }
         numberOne = int.Parse(currentDisplayValue);
-        operation = "subtract";
+        operation = Operation.Subtract;
         currentDisplayValue = "-";
     }
 
@@ -78,7 +89,7 @@
     {
         if (!IsDisplayingNumber()) { return; }
         numberOne = int.Parse(currentDisplayValue);
-        operation = "multiply";
+        operation = Operation.Multiply;
         currentDisplayValue = "*";
     }
 
@@ -86,7 +97,7 @@
     {
         if (!IsDisplayingNumber()) { return; }
         numberOne = int.Parse(currentDisplayValue);
-        operation = "divide";
+        operation = Operation.Divide;
         currentDisplayValue = "/";
     }
 
@@ -96,16 +107,16 @@
         numberTwo = int.Parse(currentDisplayValue);
         switch (operation)
         {
-            case "add":
+            case Operation.Add:
                 currentDisplayValue = Add(numberOne, numberTwo).ToString();
                 break;
-            case "subtract":
+            case Operation.Subtract:
                 currentDisplayValue = Subtract(numberOne, numberTwo).ToString();
                 break;
-            case "multiply":
+            case Operation.Multiply:
                 currentDisplayValue = Multiply(numberOne, numberTwo).ToString();
                 break;
-            case "divide":
+            case Operation.Divide:
                 currentDisplayValue = Divide(numberOne, numberTwo);
                 break;
             default:
@@ -113,7 +124,7 @@
         }
         numberOne = 0;
         numberTwo = 0;
-        operation = "equals";
+        operation = Operation.Result;
     }
 
     private int Add(int num1, int num2)
@@ -143,7 +154,7 @@
         currentDisplayValue = "0";
         numberOne = 0;
         numberTwo = 0;
-        operation = "";
+        operation = Operation.None;
     }
 
     private bool IsDisplayingNumber()
