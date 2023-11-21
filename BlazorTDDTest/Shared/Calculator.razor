@@ -1,29 +1,30 @@
 ﻿<h3>Calculator</h3>
 
 <div id="calc-display">
-    <p @bind="currentDisplayValue" id="calc-display-value">0</p>
+    <p id="calc-display-value">: @currentDisplayValue</p>
 </div>
 
 
 <div id="buttons">
     <table>
         <tr>
-            <td><button class="btn btn-primary">1</button></td>
-            <td><button class="btn btn-primary">2</button></td>
-            <td><button class="btn btn-primary">3</button></td>
+            <td><button class="btn btn-primary" id="one" @onclick="() => PressNumberButton(1)">1</button></td>
+            <td><button class="btn btn-primary" @onclick="() => PressNumberButton(2)">2</button></td>
+            <td><button class="btn btn-primary" @onclick="() => PressNumberButton(3)">3</button></td>
         </tr>
         <tr>
-            <td><button class="btn btn-primary">4</button></td>
-            <td><button class="btn btn-primary">5</button></td>
-            <td><button class="btn btn-primary">6</button></td>
+            <td><button class="btn btn-primary" @onclick="() => PressNumberButton(4)">4</button></td>
+            <td><button class="btn btn-primary" @onclick="() => PressNumberButton(5)">5</button></td>
+            <td><button class="btn btn-primary" @onclick="() => PressNumberButton(6)">6</button></td>
         </tr>
         <tr>
-            <td><button class="btn btn-primary">7</button></td>
-            <td><button class="btn btn-primary">8</button></td>
-            <td><button class="btn btn-primary">9</button></td>
+            <td><button class="btn btn-primary" @onclick="() => PressNumberButton(7)">7</button></td>
+            <td><button class="btn btn-primary" @onclick="() => PressNumberButton(8)">8</button></td>
+            <td><button class="btn btn-primary" @onclick="() => PressNumberButton(9)">9</button></td>
         </tr>
         <tr>
-            <td><button class="btn btn-primary">0</button></td>
+            <td><button class="btn btn-primary" @onclick="() => PressNumberButton(0)">0</button></td>
+            <td><button class="btn btn-primary" id="clear-display" @onclick=" ()=> ClearDisplay()">C</button></td>
         </tr>
 
     </table>
@@ -31,10 +32,22 @@
 
 
 @code {
-    string? currentDisplayValue = "1";
+    string? currentDisplayValue = "0";
 
-    private void PressNumberButton(char number)
+    private void PressNumberButton(int number)
     {
-        
+        if(currentDisplayValue == "0")
+        {
+            currentDisplayValue = number.ToString();
+        }
+        else
+        {
+            currentDisplayValue += number.ToString();
+        }
+    }
+
+    private void ClearDisplay()
+    {
+        currentDisplayValue = "0";
     }
 }
