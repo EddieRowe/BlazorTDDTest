@@ -5,7 +5,7 @@ namespace BlazorTDDTest.Tests
     public class CalculatorTests
     {
         [Fact]
-        public void DisplayShouldShowZeroOnLoad()
+        public void DisplayZeroOnLoad()
         {
             // Arrange
             using var ctx = new TestContext();
@@ -18,7 +18,7 @@ namespace BlazorTDDTest.Tests
         }
 
         [Fact]
-        public void DisplayShouldBindToCode() {
+        public void DisplayBindToCode() {
             // Arrange
             using var ctx = new TestContext();
             var cut = ctx.RenderComponent<Calculator>();
@@ -33,7 +33,7 @@ namespace BlazorTDDTest.Tests
         }
 
         [Fact]
-        public void DisplayShouldAddToStringIfNonZero()
+        public void DisplayAddToStringIfNonZero()
         {
             // Arrange
             using var ctx = new TestContext();
@@ -50,7 +50,7 @@ namespace BlazorTDDTest.Tests
         }
 
         [Fact]
-        public void ClearButtonShouldClearDisplay()
+        public void ClearButtonClearDisplay()
         {
             // Arrange
             using var ctx = new TestContext();
@@ -67,7 +67,7 @@ namespace BlazorTDDTest.Tests
         }
 
         [Fact]
-        public void AddMethodShouldAddSingleDigitNumbers()
+        public void AddSingleDigitNumbers()
         {
             // Arrange
             using var ctx = new TestContext();
@@ -86,7 +86,7 @@ namespace BlazorTDDTest.Tests
         }
 
         [Fact]
-        public void AddMethodShouldAddMultiDigitNumbers()
+        public void AddMultiDigitNumbers()
         {
             // Arrange
             using var ctx = new TestContext();
@@ -127,7 +127,7 @@ namespace BlazorTDDTest.Tests
         }
 
         [Fact]
-        public void Subtract1From5()
+        public void SubtractOneFromFive()
         {
             // Arrange
             using var ctx = new TestContext();
@@ -146,7 +146,7 @@ namespace BlazorTDDTest.Tests
         }
 
         [Fact]
-        public void Subtract10From5()
+        public void SubtractTenFromFive()
         {
             // Arrange
             using var ctx = new TestContext();
@@ -245,7 +245,7 @@ namespace BlazorTDDTest.Tests
         }
 
         [Fact]
-        public void Divide10By2()
+        public void DivideTenByTwo()
         {
             // Arrange
             using var ctx = new TestContext();
@@ -265,7 +265,7 @@ namespace BlazorTDDTest.Tests
         }
 
         [Fact]
-        public void DivideBy0()
+        public void DivideByZero()
         {
             // Arrange
             using var ctx = new TestContext();
