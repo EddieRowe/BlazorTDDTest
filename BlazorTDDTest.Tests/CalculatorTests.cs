@@ -59,7 +59,7 @@ namespace BlazorTDDTest.Tests
 
             // Act
             cut.Find("button#one").Click();
-            cut.Find("button#clear-display").Click();
+            cut.Find("button#press-clear").Click();
 
             // Assert
             var paraElmText = paraElm.TextContent;
@@ -357,6 +357,27 @@ namespace BlazorTDDTest.Tests
             // Assert
             var paraElmText = paraElm.TextContent;
             paraElmText.MarkupMatches(": +");
+        }
+
+        [Fact]
+        public void ClearButtonClearsOperation()
+        {
+            // Arrange
+            using var ctx = new TestContext();
+            var cut = ctx.RenderComponent<Calculator>();
+            var paraElm = cut.Find("p");
+
+            // Act
+            cut.Find("button#five").Click();
+            cut.Find("button#press-divide").Click();
+            cut.Find("button#press-clear").Click();
+
+            cut.Find("button#five").Click();
+            cut.Find("button#press-equals").Click();
+
+            // Assert
+            var paraElmText = paraElm.TextContent;
+            paraElmText.MarkupMatches(": 5");
         }
 
     }

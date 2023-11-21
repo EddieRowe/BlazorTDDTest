@@ -24,7 +24,7 @@
         </tr>
         <tr>
             <td><button class="btn btn-primary" id="zero" @onclick="() => PressNumberButton(0)">0</button></td>
-            <td><button class="btn btn-primary" id="clear-display" @onclick=" ()=> ClearDisplay()">C</button></td>
+            <td><button class="btn btn-primary" id="press-clear" @onclick=" ()=> Clear()">C</button></td>
             <td><button class="btn btn-primary" id="press-equals" @onclick=" ()=> PressEquals()">=</button></td>
         </tr>
         <tr>
@@ -138,9 +138,12 @@
         return (num1 / num2).ToString();
     }
 
-    private void ClearDisplay()
+    private void Clear()
     {
         currentDisplayValue = "0";
+        numberOne = 0;
+        numberTwo = 0;
+        operation = "";
     }
 
     private bool IsDisplayingNumber()
