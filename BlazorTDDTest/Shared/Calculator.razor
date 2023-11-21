@@ -92,6 +92,7 @@
 
     private void PressEquals()
     {
+        if (!IsDisplayingNumber()) { return; }
         numberTwo = int.Parse(currentDisplayValue);
         switch (operation)
         {

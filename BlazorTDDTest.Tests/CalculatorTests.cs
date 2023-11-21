@@ -341,5 +341,23 @@ namespace BlazorTDDTest.Tests
             paraElmText.MarkupMatches(": 16");
         }
 
+        [Fact]
+        public void PlusEqualsTest()    //Maybe make SubtractEquals, MultiplyEquals & DivideEquals tests?
+        {
+            // Arrange
+            using var ctx = new TestContext();
+            var cut = ctx.RenderComponent<Calculator>();
+            var paraElm = cut.Find("p");
+
+            // Act
+            cut.Find("button#eight").Click();
+            cut.Find("button#press-add").Click();
+            cut.Find("button#press-equals").Click();
+
+            // Assert
+            var paraElmText = paraElm.TextContent;
+            paraElmText.MarkupMatches(": +");
+        }
+
     }
 }
