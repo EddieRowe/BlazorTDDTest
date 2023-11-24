@@ -4,26 +4,28 @@ namespace BlazorTDDTest.Tests
 {
     public class CalculatorTests
     {
+        TestContext ctx = new TestContext();
+        IRenderedComponent<Calculator> cut;
+        AngleSharp.Dom.IElement paraElm;
+
+        public CalculatorTests() // Called before each test
+        {
+            ctx = new TestContext();
+            cut = ctx.RenderComponent<Calculator>();
+            paraElm = cut.Find("p");
+        }
+
         [Fact]
         public void DisplayZeroOnLoad()
         {
-            // Arrange
-            using var ctx = new TestContext();
-            var cut = ctx.RenderComponent<Calculator>();
-            var paraElm = cut.Find("p");
-
             // Assert
             var paraElmText = paraElm.TextContent;
             paraElmText.MarkupMatches(": 0");
         }
 
         [Fact]
-        public void DisplayBindToCode() {
-            // Arrange
-            using var ctx = new TestContext();
-            var cut = ctx.RenderComponent<Calculator>();
-            var paraElm = cut.Find("p");
-
+        public void DisplayBindToCode() 
+        {
             // Act
             cut.Find("button#one").Click();
 
@@ -35,11 +37,6 @@ namespace BlazorTDDTest.Tests
         [Fact]
         public void DisplayAddToStringIfNonZero()
         {
-            // Arrange
-            using var ctx = new TestContext();
-            var cut = ctx.RenderComponent<Calculator>();
-            var paraElm = cut.Find("p");
-
             // Act
             cut.Find("button#one").Click();
             cut.Find("button#one").Click();
@@ -52,11 +49,6 @@ namespace BlazorTDDTest.Tests
         [Fact]
         public void ClearButtonClearDisplay()
         {
-            // Arrange
-            using var ctx = new TestContext();
-            var cut = ctx.RenderComponent<Calculator>();
-            var paraElm = cut.Find("p");
-
             // Act
             cut.Find("button#one").Click();
             cut.Find("button#press-clear").Click();
@@ -69,11 +61,6 @@ namespace BlazorTDDTest.Tests
         [Fact]
         public void AddSingleDigitNumbers()
         {
-            // Arrange
-            using var ctx = new TestContext();
-            var cut = ctx.RenderComponent<Calculator>();
-            var paraElm = cut.Find("p");
-
             // Act
             cut.Find("button#five").Click();
             cut.Find("button#press-add").Click();
@@ -88,11 +75,6 @@ namespace BlazorTDDTest.Tests
         [Fact]
         public void AddMultiDigitNumbers()
         {
-            // Arrange
-            using var ctx = new TestContext();
-            var cut = ctx.RenderComponent<Calculator>();
-            var paraElm = cut.Find("p");
-
             // Act
             cut.Find("button#five").Click();
             cut.Find("button#nine").Click();
@@ -111,11 +93,6 @@ namespace BlazorTDDTest.Tests
         [Fact]
         public void AddFromNoInput()
         {
-            // Arrange
-            using var ctx = new TestContext();
-            var cut = ctx.RenderComponent<Calculator>();
-            var paraElm = cut.Find("p");
-
             // Act
             cut.Find("button#press-add").Click();
             cut.Find("button#two").Click();
@@ -129,11 +106,6 @@ namespace BlazorTDDTest.Tests
         [Fact]
         public void SubtractOneFromFive()
         {
-            // Arrange
-            using var ctx = new TestContext();
-            var cut = ctx.RenderComponent<Calculator>();
-            var paraElm = cut.Find("p");
-
             // Act
             cut.Find("button#five").Click();
             cut.Find("button#press-subtract").Click();
@@ -148,11 +120,6 @@ namespace BlazorTDDTest.Tests
         [Fact]
         public void SubtractTenFromFive()
         {
-            // Arrange
-            using var ctx = new TestContext();
-            var cut = ctx.RenderComponent<Calculator>();
-            var paraElm = cut.Find("p");
-
             // Act
             cut.Find("button#five").Click();
             cut.Find("button#press-subtract").Click();
@@ -168,11 +135,6 @@ namespace BlazorTDDTest.Tests
         [Fact]
         public void PressSubtractMultipleTimes()
         {
-            // Arrange
-            using var ctx = new TestContext();
-            var cut = ctx.RenderComponent<Calculator>();
-            var paraElm = cut.Find("p");
-
             // Act
             cut.Find("button#five").Click();
             cut.Find("button#press-subtract").Click();
@@ -188,11 +150,6 @@ namespace BlazorTDDTest.Tests
         [Fact]
         public void MultiplyFromNoInput()
         {
-            // Arrange
-            using var ctx = new TestContext();
-            var cut = ctx.RenderComponent<Calculator>();
-            var paraElm = cut.Find("p");
-
             // Act
             cut.Find("button#press-multiply").Click();
             cut.Find("button#two").Click();
@@ -206,11 +163,6 @@ namespace BlazorTDDTest.Tests
         [Fact]
         public void MultiplyByZero()
         {
-            // Arrange
-            using var ctx = new TestContext();
-            var cut = ctx.RenderComponent<Calculator>();
-            var paraElm = cut.Find("p");
-
             // Act
             cut.Find("button#five").Click();
             cut.Find("button#press-multiply").Click();
@@ -225,11 +177,6 @@ namespace BlazorTDDTest.Tests
         [Fact]
         public void AddToResult()
         {
-            // Arrange
-            using var ctx = new TestContext();
-            var cut = ctx.RenderComponent<Calculator>();
-            var paraElm = cut.Find("p");
-
             // Act
             cut.Find("button#five").Click();
             cut.Find("button#press-add").Click();
@@ -247,11 +194,6 @@ namespace BlazorTDDTest.Tests
         [Fact]
         public void DivideTenByTwo()
         {
-            // Arrange
-            using var ctx = new TestContext();
-            var cut = ctx.RenderComponent<Calculator>();
-            var paraElm = cut.Find("p");
-
             // Act
             cut.Find("button#one").Click();
             cut.Find("button#zero").Click();
@@ -267,11 +209,6 @@ namespace BlazorTDDTest.Tests
         [Fact]
         public void DivideByZero()
         {
-            // Arrange
-            using var ctx = new TestContext();
-            var cut = ctx.RenderComponent<Calculator>();
-            var paraElm = cut.Find("p");
-
             // Act
             cut.Find("button#one").Click();
             cut.Find("button#press-divide").Click();
@@ -286,11 +223,6 @@ namespace BlazorTDDTest.Tests
         [Fact]
         public void MultiplyAnswersThenNewSum()
         {
-            // Arrange
-            using var ctx = new TestContext();
-            var cut = ctx.RenderComponent<Calculator>();
-            var paraElm = cut.Find("p");
-
             // Act
             cut.Find("button#eight").Click();
             cut.Find("button#press-multiply").Click();
@@ -319,11 +251,6 @@ namespace BlazorTDDTest.Tests
         [Fact]
         public void MultiplyAnswersThenNewMultiDigitSum()
         {
-            // Arrange
-            using var ctx = new TestContext();
-            var cut = ctx.RenderComponent<Calculator>();
-            var paraElm = cut.Find("p");
-
             // Act
             cut.Find("button#eight").Click();
             cut.Find("button#press-multiply").Click();
@@ -344,11 +271,6 @@ namespace BlazorTDDTest.Tests
         [Fact]
         public void PlusEqualsTest()    //Maybe make SubtractEquals, MultiplyEquals & DivideEquals tests?
         {
-            // Arrange
-            using var ctx = new TestContext();
-            var cut = ctx.RenderComponent<Calculator>();
-            var paraElm = cut.Find("p");
-
             // Act
             cut.Find("button#eight").Click();
             cut.Find("button#press-add").Click();
@@ -362,11 +284,6 @@ namespace BlazorTDDTest.Tests
         [Fact]
         public void ClearButtonClearsOperation()
         {
-            // Arrange
-            using var ctx = new TestContext();
-            var cut = ctx.RenderComponent<Calculator>();
-            var paraElm = cut.Find("p");
-
             // Act
             cut.Find("button#five").Click();
             cut.Find("button#press-divide").Click();
