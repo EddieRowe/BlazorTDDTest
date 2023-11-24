@@ -65,8 +65,7 @@
         {
             currentDisplayValue += number.ToString();
         }
-        if (operation == Operation.Result)
-            operation = Operation.None;
+        operation = (operation == Operation.Result) ? Operation.None : operation;
     }
 
     private void PressAdd()
@@ -105,6 +104,12 @@
     {
         if (!IsDisplayingNumber()) { return; }
         numberTwo = int.Parse(currentDisplayValue);
+
+        DoOperation();
+    }
+
+    private void DoOperation()
+    {
         switch (operation)
         {
             case Operation.Add:
@@ -122,6 +127,7 @@
             default:
                 break;
         }
+
         numberOne = 0;
         numberTwo = 0;
         operation = Operation.Result;

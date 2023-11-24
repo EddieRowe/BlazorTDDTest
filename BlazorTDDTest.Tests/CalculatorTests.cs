@@ -4,15 +4,15 @@ namespace BlazorTDDTest.Tests
 {
     public class CalculatorTests
     {
-        TestContext ctx = new TestContext();
-        IRenderedComponent<Calculator> cut;
+        TestContext context = new TestContext();
+        IRenderedComponent<Calculator> calc;
         AngleSharp.Dom.IElement paraElm;
 
         public CalculatorTests() // Called before each test
         {
-            ctx = new TestContext();
-            cut = ctx.RenderComponent<Calculator>();
-            paraElm = cut.Find("p");
+            context = new TestContext();
+            calc = context.RenderComponent<Calculator>();
+            paraElm = calc.Find("p");
         }
 
         [Fact]
@@ -27,7 +27,7 @@ namespace BlazorTDDTest.Tests
         public void DisplayBindToCode() 
         {
             // Act
-            cut.Find("button#one").Click();
+            calc.Find("button#one").Click();
 
             // Assert
             var paraElmText = paraElm.TextContent;
@@ -38,8 +38,8 @@ namespace BlazorTDDTest.Tests
         public void DisplayAddToStringIfNonZero()
         {
             // Act
-            cut.Find("button#one").Click();
-            cut.Find("button#one").Click();
+            calc.Find("button#one").Click();
+            calc.Find("button#one").Click();
 
             // Assert
             var paraElmText = paraElm.TextContent;
@@ -50,8 +50,8 @@ namespace BlazorTDDTest.Tests
         public void ClearButtonClearDisplay()
         {
             // Act
-            cut.Find("button#one").Click();
-            cut.Find("button#press-clear").Click();
+            calc.Find("button#one").Click();
+            calc.Find("button#press-clear").Click();
 
             // Assert
             var paraElmText = paraElm.TextContent;
@@ -62,10 +62,10 @@ namespace BlazorTDDTest.Tests
         public void AddSingleDigitNumbers()
         {
             // Act
-            cut.Find("button#five").Click();
-            cut.Find("button#press-add").Click();
-            cut.Find("button#five").Click();
-            cut.Find("button#press-equals").Click();
+            calc.Find("button#five").Click();
+            calc.Find("button#press-add").Click();
+            calc.Find("button#five").Click();
+            calc.Find("button#press-equals").Click();
 
             // Assert
             var paraElmText = paraElm.TextContent;
@@ -76,14 +76,14 @@ namespace BlazorTDDTest.Tests
         public void AddMultiDigitNumbers()
         {
             // Act
-            cut.Find("button#five").Click();
-            cut.Find("button#nine").Click();
-            cut.Find("button#zero").Click();
-            cut.Find("button#press-add").Click();
-            cut.Find("button#two").Click();
-            cut.Find("button#two").Click();
-            cut.Find("button#three").Click();
-            cut.Find("button#press-equals").Click();
+            calc.Find("button#five").Click();
+            calc.Find("button#nine").Click();
+            calc.Find("button#zero").Click();
+            calc.Find("button#press-add").Click();
+            calc.Find("button#two").Click();
+            calc.Find("button#two").Click();
+            calc.Find("button#three").Click();
+            calc.Find("button#press-equals").Click();
 
             // Assert
             var paraElmText = paraElm.TextContent;
@@ -94,9 +94,9 @@ namespace BlazorTDDTest.Tests
         public void AddFromNoInput()
         {
             // Act
-            cut.Find("button#press-add").Click();
-            cut.Find("button#two").Click();
-            cut.Find("button#press-equals").Click();
+            calc.Find("button#press-add").Click();
+            calc.Find("button#two").Click();
+            calc.Find("button#press-equals").Click();
 
             // Assert
             var paraElmText = paraElm.TextContent;
@@ -107,10 +107,10 @@ namespace BlazorTDDTest.Tests
         public void SubtractOneFromFive()
         {
             // Act
-            cut.Find("button#five").Click();
-            cut.Find("button#press-subtract").Click();
-            cut.Find("button#one").Click();
-            cut.Find("button#press-equals").Click();
+            calc.Find("button#five").Click();
+            calc.Find("button#press-subtract").Click();
+            calc.Find("button#one").Click();
+            calc.Find("button#press-equals").Click();
 
             // Assert
             var paraElmText = paraElm.TextContent;
@@ -121,11 +121,11 @@ namespace BlazorTDDTest.Tests
         public void SubtractTenFromFive()
         {
             // Act
-            cut.Find("button#five").Click();
-            cut.Find("button#press-subtract").Click();
-            cut.Find("button#one").Click();
-            cut.Find("button#zero").Click();
-            cut.Find("button#press-equals").Click();
+            calc.Find("button#five").Click();
+            calc.Find("button#press-subtract").Click();
+            calc.Find("button#one").Click();
+            calc.Find("button#zero").Click();
+            calc.Find("button#press-equals").Click();
 
             // Assert
             var paraElmText = paraElm.TextContent;
@@ -136,11 +136,11 @@ namespace BlazorTDDTest.Tests
         public void PressSubtractMultipleTimes()
         {
             // Act
-            cut.Find("button#five").Click();
-            cut.Find("button#press-subtract").Click();
-            cut.Find("button#press-subtract").Click();
-            cut.Find("button#one").Click();
-            cut.Find("button#press-equals").Click();
+            calc.Find("button#five").Click();
+            calc.Find("button#press-subtract").Click();
+            calc.Find("button#press-subtract").Click();
+            calc.Find("button#one").Click();
+            calc.Find("button#press-equals").Click();
 
             // Assert
             var paraElmText = paraElm.TextContent;
@@ -151,9 +151,9 @@ namespace BlazorTDDTest.Tests
         public void MultiplyFromNoInput()
         {
             // Act
-            cut.Find("button#press-multiply").Click();
-            cut.Find("button#two").Click();
-            cut.Find("button#press-equals").Click();
+            calc.Find("button#press-multiply").Click();
+            calc.Find("button#two").Click();
+            calc.Find("button#press-equals").Click();
 
             // Assert
             var paraElmText = paraElm.TextContent;
@@ -164,10 +164,10 @@ namespace BlazorTDDTest.Tests
         public void MultiplyByZero()
         {
             // Act
-            cut.Find("button#five").Click();
-            cut.Find("button#press-multiply").Click();
-            cut.Find("button#zero").Click();
-            cut.Find("button#press-equals").Click();
+            calc.Find("button#five").Click();
+            calc.Find("button#press-multiply").Click();
+            calc.Find("button#zero").Click();
+            calc.Find("button#press-equals").Click();
 
             // Assert
             var paraElmText = paraElm.TextContent;
@@ -178,13 +178,13 @@ namespace BlazorTDDTest.Tests
         public void AddToResult()
         {
             // Act
-            cut.Find("button#five").Click();
-            cut.Find("button#press-add").Click();
-            cut.Find("button#six").Click();
-            cut.Find("button#press-equals").Click();
-            cut.Find("button#press-add").Click();
-            cut.Find("button#one").Click();
-            cut.Find("button#press-equals").Click();
+            calc.Find("button#five").Click();
+            calc.Find("button#press-add").Click();
+            calc.Find("button#six").Click();
+            calc.Find("button#press-equals").Click();
+            calc.Find("button#press-add").Click();
+            calc.Find("button#one").Click();
+            calc.Find("button#press-equals").Click();
 
             // Assert
             var paraElmText = paraElm.TextContent;
@@ -195,11 +195,11 @@ namespace BlazorTDDTest.Tests
         public void DivideTenByTwo()
         {
             // Act
-            cut.Find("button#one").Click();
-            cut.Find("button#zero").Click();
-            cut.Find("button#press-divide").Click();
-            cut.Find("button#two").Click();
-            cut.Find("button#press-equals").Click();
+            calc.Find("button#one").Click();
+            calc.Find("button#zero").Click();
+            calc.Find("button#press-divide").Click();
+            calc.Find("button#two").Click();
+            calc.Find("button#press-equals").Click();
 
             // Assert
             var paraElmText = paraElm.TextContent;
@@ -210,10 +210,10 @@ namespace BlazorTDDTest.Tests
         public void DivideByZero()
         {
             // Act
-            cut.Find("button#one").Click();
-            cut.Find("button#press-divide").Click();
-            cut.Find("button#zero").Click();
-            cut.Find("button#press-equals").Click();
+            calc.Find("button#one").Click();
+            calc.Find("button#press-divide").Click();
+            calc.Find("button#zero").Click();
+            calc.Find("button#press-equals").Click();
 
             // Assert
             var paraElmText = paraElm.TextContent;
@@ -224,23 +224,23 @@ namespace BlazorTDDTest.Tests
         public void MultiplyAnswersThenNewSum()
         {
             // Act
-            cut.Find("button#eight").Click();
-            cut.Find("button#press-multiply").Click();
-            cut.Find("button#eight").Click();
-            cut.Find("button#press-equals").Click();
+            calc.Find("button#eight").Click();
+            calc.Find("button#press-multiply").Click();
+            calc.Find("button#eight").Click();
+            calc.Find("button#press-equals").Click();
             //64
-            cut.Find("button#press-multiply").Click();
-            cut.Find("button#eight").Click();
-            cut.Find("button#press-equals").Click();
+            calc.Find("button#press-multiply").Click();
+            calc.Find("button#eight").Click();
+            calc.Find("button#press-equals").Click();
             //512
-            cut.Find("button#press-multiply").Click();
-            cut.Find("button#eight").Click();
-            cut.Find("button#press-equals").Click();
+            calc.Find("button#press-multiply").Click();
+            calc.Find("button#eight").Click();
+            calc.Find("button#press-equals").Click();
             //4096
-            cut.Find("button#one").Click();
-            cut.Find("button#press-add").Click();
-            cut.Find("button#eight").Click();
-            cut.Find("button#press-equals").Click();
+            calc.Find("button#one").Click();
+            calc.Find("button#press-add").Click();
+            calc.Find("button#eight").Click();
+            calc.Find("button#press-equals").Click();
             //9
 
             // Assert
@@ -252,16 +252,16 @@ namespace BlazorTDDTest.Tests
         public void MultiplyAnswersThenNewMultiDigitSum()
         {
             // Act
-            cut.Find("button#eight").Click();
-            cut.Find("button#press-multiply").Click();
-            cut.Find("button#eight").Click();
-            cut.Find("button#press-equals").Click();
+            calc.Find("button#eight").Click();
+            calc.Find("button#press-multiply").Click();
+            calc.Find("button#eight").Click();
+            calc.Find("button#press-equals").Click();
             
-            cut.Find("button#one").Click();
-            cut.Find("button#one").Click();
-            cut.Find("button#press-add").Click();
-            cut.Find("button#five").Click();
-            cut.Find("button#press-equals").Click();     
+            calc.Find("button#one").Click();
+            calc.Find("button#one").Click();
+            calc.Find("button#press-add").Click();
+            calc.Find("button#five").Click();
+            calc.Find("button#press-equals").Click();     
 
             // Assert
             var paraElmText = paraElm.TextContent;
@@ -272,9 +272,9 @@ namespace BlazorTDDTest.Tests
         public void PlusEqualsTest()    //Maybe make SubtractEquals, MultiplyEquals & DivideEquals tests?
         {
             // Act
-            cut.Find("button#eight").Click();
-            cut.Find("button#press-add").Click();
-            cut.Find("button#press-equals").Click();
+            calc.Find("button#eight").Click();
+            calc.Find("button#press-add").Click();
+            calc.Find("button#press-equals").Click();
 
             // Assert
             var paraElmText = paraElm.TextContent;
@@ -285,12 +285,12 @@ namespace BlazorTDDTest.Tests
         public void ClearButtonClearsOperation()
         {
             // Act
-            cut.Find("button#five").Click();
-            cut.Find("button#press-divide").Click();
-            cut.Find("button#press-clear").Click();
+            calc.Find("button#five").Click();
+            calc.Find("button#press-divide").Click();
+            calc.Find("button#press-clear").Click();
 
-            cut.Find("button#five").Click();
-            cut.Find("button#press-equals").Click();
+            calc.Find("button#five").Click();
+            calc.Find("button#press-equals").Click();
 
             // Assert
             var paraElmText = paraElm.TextContent;
